@@ -20,7 +20,7 @@ function corent(){
 corent()
 elradio.forEach((i)=>{
   i.addEventListener('change',()=>{
-    elspan.textContent = corent();
+    elspan.textContent = corent() + 'so\'m';
   });
 });
 let resul = 0;
