@@ -3,14 +3,47 @@ const elbtns = document.querySelectorAll('.mac-btn');
 const elradio = document.querySelectorAll('.radios');
 const elColor = document.querySelectorAll('.radio__color');
 const elspan = document.querySelector('.sum');
+const eldecr = document.querySelector('.btn-increase');
+const elicr = document.querySelector('.btn-decrease');
+const elvalue = document.querySelector('.span');
+let def = 0;
+eldecr.addEventListener('click',()=>{
+  let decrim = elvalue.textContent;
+  decrim = Number(decrim)+1;
+  elvalue.textContent = decrim;
+  elspan.textContent = parseInt(elspan.textContent) + def + " so'm";
+});
+elicr.addEventListener('click',()=>{
+  if(elvalue.textContent > 1){
+    let decrim = elvalue.textContent;
+    decrim = Number(decrim)-1;
+    elvalue.textContent = decrim;
+    elspan.textContent = parseInt(elspan.textContent) - def + " so'm";
+  }
+});
 function corent(){
+  let hard1 = document.querySelector('#hard1');
+  let ram8 = document.querySelector('#rams8');
   let resulPrice = 0;
   for(let i = 0; i < elradio.length; i++){
     if(elradio[i].checked){
+      if(elradio[i].id == 'ram8'){
+        hard1.style.display = 'none';
+      }
+      if(elradio[i].id == 'ram16'){
+        hard1.style.display = 'inline-block';
+      }
+      if(elradio[i].id == 'mem1'){
+        ram8.style.display = 'none'
+      }
+      if(elradio[i].id == 'mem256' || elradio[i].id == 'mem512'){
+        ram8.style.display = 'inline-block'
+      }
       for(let j in prises){
         console.log(elradio[i].checked);
         if(elradio[i].id == j){
           resulPrice += prises[j];
+          def = resulPrice;
         }
       }
     }
@@ -20,7 +53,7 @@ function corent(){
 corent()
 elradio.forEach((i)=>{
   i.addEventListener('change',()=>{
-    elspan.textContent = corent() + 'so\'m';
+    elspan.textContent = corent() + ' so\'m';
   });
 });
 let resul = 0;
