@@ -59,9 +59,24 @@ elradio.forEach((i)=>{
 let resul = 0;
 elbtns.forEach((i)=>{
   i.addEventListener('click',(item)=>{
-    let initem = item.target.parentElement
-    resul = 700 * initem.value;
-    list.style.left = `-${resul - 700}px`;
+    let initem = item.target.parentElement;
+    console.log(initem);
+    if(initem.classList.contains('img1')){
+      list.style.transform = " translateX(0)";
+    }
+    if(initem.classList.contains('img2')){
+      list.style.transform = " translateX(-700px)";
+    }
+    if(initem.classList.contains('img3')){
+      list.style.transform = " translateX(-1400px)";
+    }
+    if(initem.classList.contains('img4')){
+      list.style.transform = " translateX(-2100px)";
+    }
+    if(initem.classList.contains('img5')){
+      list.style.transform = " translateX(-2800px)";
+    }
+    
     for(let i of elbtns){
       i.classList.remove('mac-btn-active');
     }
@@ -79,9 +94,11 @@ function renderImg(val){
   list.innerHTML="";
   for(let i = 0; i < imgs[val].length; i++){
     let li = document.createElement('li');
-    li.className = 'mac__item';
+    li.className = 'mac__item tranzin';
+    li.style.transition = "all .4s"
     li.innerHTML = `<img id="1" src="${imgs[val][i]}" alt="MacBook" class="current-img">`
     list.append(li);
     elbtns[i].innerHTML = `<img src="${imgs[val][i]}" alt="MacBook">`
   }
 }
+renderImg(0);
